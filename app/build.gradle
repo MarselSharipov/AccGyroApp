@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "ru.unlucky.accgyroapp"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", '"http://192.168.157.109:5000/"'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [disableEmptyStrategyCheck: 'true']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':health')
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //RxJava2
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Moxy
+    implementation "com.github.moxy-community.Moxy:moxy-androidx:2.1.2"
+    implementation "com.github.moxy-community.Moxy:moxy-ktx:2.1.2"
+    implementation "com.github.moxy-community.Moxy:moxy-material:2.1.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
+
+    //Koin
+    //https://github.com/InsertKoinIO/koin
+    implementation "io.insert-koin:koin-core:3.2.0"
+    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "io.insert-koin:koin-android-compat:3.2.0"
+
+    //Network
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0' // лучше не обновлять
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0' // лучше не обновлять
+}

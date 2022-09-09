@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 32
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+
+    //RxJava2
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Moxy
+    implementation "com.github.moxy-community.Moxy:moxy-androidx:2.1.2"
+    implementation "com.github.moxy-community.Moxy:moxy-ktx:2.1.2"
+    implementation "com.github.moxy-community.Moxy:moxy-material:2.1.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
+
+    //Koin
+    //https://github.com/InsertKoinIO/koin
+    implementation "io.insert-koin:koin-core:3.2.0"
+    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "io.insert-koin:koin-android-compat:3.2.0"
+
+}
